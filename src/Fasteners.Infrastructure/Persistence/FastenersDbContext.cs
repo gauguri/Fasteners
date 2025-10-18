@@ -47,6 +47,18 @@ public class FastenersDbContext : DbContext
             .WithOne(i => i.Product)
             .HasForeignKey(i => i.ProductId);
 
+        modelBuilder.Entity<ProductVariant>()
+            .Property(v => v.UnitPrice)
+            .HasPrecision(18, 2);
+
+        modelBuilder.Entity<PriceTier>()
+            .Property(t => t.Price)
+            .HasPrecision(18, 2);
+
+        modelBuilder.Entity<PurchaseOrderLine>()
+            .Property(l => l.Cost)
+            .HasPrecision(18, 2);
+
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(FastenersDbContext).Assembly);
     }
 }
