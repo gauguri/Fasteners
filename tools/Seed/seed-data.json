@@ -1,0 +1,35 @@
+{
+  "categories": [
+    {
+      "name": "Bolts",
+      "slug": "bolts"
+    },
+    {
+      "name": "Screws",
+      "slug": "screws"
+    },
+    {
+      "name": "Nuts",
+      "slug": "nuts"
+    }
+  ],
+  "products": [
+    {
+      "name": "Hex Cap Bolt",
+      "category": "Bolts",
+      "brand": "Apex Fasteners",
+      "variants": [
+        {
+          "threadStandard": "UNC",
+          "threadSize": "1/4-20",
+          "diameter": "0.25 in",
+          "length": "1 in",
+          "material": "Alloy Steel",
+          "finish": "Zinc",
+          "packSize": "25",
+          "unitPrice": 12.50
+        }
+      ]
+    }
+  ]
+}

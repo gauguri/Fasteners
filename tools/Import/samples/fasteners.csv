@@ -1,0 +1,4 @@
+Category,ProductName,ThreadStandard,ThreadSize,Diameter,Length,Material,Finish,HeadType,DriveType,PackSize,UnitPrice
+Bolts,Hex Cap Bolt,UNC,1/4-20,0.25 in,1 in,Alloy Steel,Zinc,Hex,External Hex,25,12.50
+Bolts,Socket Head Cap Screw,UNC,5/16-18,0.3125 in,1.5 in,Alloy Steel,Black Oxide,Socket Cap,Allen,50,18.75
+Screws,Machine Screw,UNC,8-32,0.164 in,0.75 in,Stainless 18-8,Plain,Pan,Phillips,100,9.90

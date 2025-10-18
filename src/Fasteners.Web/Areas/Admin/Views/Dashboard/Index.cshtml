@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<section class="rounded-2xl bg-white p-8 shadow">
+    <h1 class="text-2xl font-bold text-slate-900">Operations dashboard</h1>
+    <p class="mt-2 text-sm text-slate-600">High-level snapshot of catalog and inventory metrics.</p>
+
+    <div class="mt-6 grid gap-6 md:grid-cols-3">
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-6">
+            <p class="text-sm text-slate-500">Products</p>
+            <p class="mt-2 text-3xl font-semibold text-slate-900">@ViewData["ProductCount"]</p>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-6">
+            <p class="text-sm text-slate-500">Variants</p>
+            <p class="mt-2 text-3xl font-semibold text-slate-900">@ViewData["VariantCount"]</p>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-slate-50 p-6">
+            <p class="text-sm text-slate-500">Inventory on hand</p>
+            <p class="mt-2 text-3xl font-semibold text-slate-900">@ViewData["InventoryOnHand"]</p>
+        </div>
+    </div>
+</section>

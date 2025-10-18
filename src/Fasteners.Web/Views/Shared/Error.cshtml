@@ -1,0 +1,13 @@
+@model Fasteners.Web.Models.ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<section class="rounded-2xl bg-white p-10 shadow">
+    <h1 class="text-3xl font-bold text-red-600">Something went wrong</h1>
+    <p class="mt-4 text-slate-600">An unexpected error occurred. Please try again or contact support.</p>
+    @if (Model.ShowRequestId)
+    {
+        <p class="mt-4 text-sm text-slate-500">Request ID: <span class="font-mono">@Model.RequestId</span></p>
+    }
+</section>
