@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Restore
+        run: dotnet restore fasteners-commerce.sln
+      - name: Build
+        run: dotnet build fasteners-commerce.sln --configuration Release --no-restore
+      - name: Test
+        run: dotnet test fasteners-commerce.sln --configuration Release --no-build
+      - name: Publish Web Image
+        run: |
+          docker build -f Dockerfile.web -t ghcr.io/example/fasteners-web:${{ github.sha }} .
+      - name: Publish API Image
+        run: |
+          docker build -f Dockerfile.api -t ghcr.io/example/fasteners-api:${{ github.sha }} .

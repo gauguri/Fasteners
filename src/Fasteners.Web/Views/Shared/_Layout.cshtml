@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Fasteners Commerce</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.4/dist/tailwind.min.css" integrity="sha384-vU5v1sotfYE95rrNT9bkHtxFq9WlH0I1GtIsfRSAxEPPGjBJOCa/MEGLjm+rXhN3" crossorigin="anonymous">
+</head>
+<body class="min-h-full bg-slate-50">
+    <header class="bg-slate-900 text-white">
+        <div class="mx-auto max-w-7xl px-4 py-4 flex items-center justify-between">
+            <a href="@Url.Action("Index", "Home")" class="text-xl font-semibold tracking-wide">Fasteners Commerce</a>
+            <form method="get" asp-controller="Home" asp-action="Index" class="flex gap-2">
+                <label for="q" class="sr-only">Search catalog</label>
+                <input id="q" name="query" value="@Context.Request.Query["query"]" class="rounded-md border border-slate-300 px-3 py-2 text-slate-900" placeholder="Search bolts, screws, nuts..." />
+                <button type="submit" class="rounded-md bg-amber-500 px-4 py-2 font-semibold text-slate-900 hover:bg-amber-400">Search</button>
+            </form>
+        </div>
+    </header>
+    <main class="mx-auto max-w-7xl px-4 py-10">
+        @RenderBody()
+    </main>
+    <footer class="bg-slate-900 text-slate-200">
+        <div class="mx-auto max-w-7xl px-4 py-8 text-sm">
+            <p>&copy; @DateTime.UtcNow.Year Fasteners Commerce. All rights reserved.</p>
+        </div>
+    </footer>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
