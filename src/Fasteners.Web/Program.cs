@@ -1,5 +1,6 @@
 using Fasteners.Infrastructure.Persistence;
 using Fasteners.Infrastructure.Seed;
+using Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
