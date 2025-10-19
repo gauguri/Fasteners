@@ -181,8 +181,10 @@ CREATE TABLE dbo.ProductSpecifications
     ProductId UNIQUEIDENTIFIER NOT NULL,
     SpecificationId UNIQUEIDENTIFIER NOT NULL,
     SpecOptionId UNIQUEIDENTIFIER NOT NULL,
+    -- Use NO ACTION on SpecificationId to avoid SQL Server multiple cascade path errors. The SpecOption cascade still removes
+    -- related ProductSpecifications when its Specification is deleted.
     CONSTRAINT FK_ProductSpecifications_Products_ProductId FOREIGN KEY (ProductId) REFERENCES dbo.Products (Id) ON DELETE CASCADE,
-    CONSTRAINT FK_ProductSpecifications_Specifications_SpecificationId FOREIGN KEY (SpecificationId) REFERENCES dbo.Specifications (Id) ON DELETE CASCADE,
+    CONSTRAINT FK_ProductSpecifications_Specifications_SpecificationId FOREIGN KEY (SpecificationId) REFERENCES dbo.Specifications (Id) ON DELETE NO ACTION,
     CONSTRAINT FK_ProductSpecifications_SpecOptions_SpecOptionId FOREIGN KEY (SpecOptionId) REFERENCES dbo.SpecOptions (Id) ON DELETE CASCADE
 );
 GO
