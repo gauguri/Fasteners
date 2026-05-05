@@ -1,105 +1,58 @@
 # Fasteners Commerce
 
-Fasteners Commerce is a sample e-commerce solution for high-specification fasteners. The project demonstrates a clean-architecture inspired ASP.NET Core 8 stack with a modular separation between Domain, Application, Infrastructure, MVC storefront, and JSON API.
+Production-shaped fasteners ecommerce workspace.
 
-> **Important:** This repository is intentionally lightweight compared to a full production deployment. It provides a functional baseline you can extend with richer catalog management, checkout, logistics, and wholesale workflows.
+This branch adds a modern Next.js storefront for a B2B military/aerospace fasteners catalog while preserving the existing ASP.NET Core commerce starter that lives under `src/`.
 
-## Project structure
+## Next.js Storefront
 
-```
-fasteners-commerce/
-├── src/
-│   ├── Fasteners.Domain/          # Entities and domain services
-│   ├── Fasteners.Application/     # Application services and catalog orchestration
-│   ├── Fasteners.Infrastructure/  # EF Core DbContext, seeding, configuration
-│   ├── Fasteners.Web/             # MVC storefront (Tailwind CSS + Razor)
-│   └── Fasteners.Api/             # Minimal JSON API with JWT authentication
-├── tests/
-│   ├── Fasteners.UnitTests/       # Domain-focused unit tests (xUnit)
-│   └── Fasteners.IntegrationTests/# Basic MVC integration smoke tests
-├── tools/
-│   ├── Seed/seed-data.json        # Placeholder for richer seed data
-│   └── Import/samples/fasteners.csv # Sample import format (to be implemented)
-├── Dockerfile.web
-├── Dockerfile.api
-├── docker-compose.yml
-└── .github/workflows/ci.yml       # GitHub Actions build + test pipeline
+The new storefront includes:
+
+- Modern homepage, category, series, product, search, cart, checkout, quote, account, admin, and support pages.
+- Seeded catalog data with normalized specs, live-style inventory, customer pricing, pack/minimum-order rules, alternates, supersessions, compliance metadata, and documents.
+- Product detail pages with rich product imagery, interactive 3D-style product viewer, pricing, inventory, compliance, alternates, and document sections.
+- Powerful catalog search with exact part matching, normalized matching, prefix search, typo tolerance, filters, saved searches, autocomplete, and paste-a-BOM bulk lookup.
+- API routes for product lookup, individual product details, autocomplete, BOM lookup, quote submission, and import handling.
+
+### Run the Next.js app
+
+```bash
+npm install
+npm run dev
 ```
 
-## Prerequisites
+Open `http://localhost:3000`.
 
-* .NET SDK 8.0.x (the repository ships with a `global.json` pinning to 8.0.404).
-* SQL Server 2022 or LocalDB for local development.
-* Node.js (optional) if you plan to integrate Tailwind build tooling instead of CDN delivery.
+For a production build:
 
-## Getting started
+```bash
+npm run build
+npm run start
+```
 
-### 1. Restore and build
+## ASP.NET Core Starter
+
+The repository also includes the original clean-architecture inspired ASP.NET Core 8 starter:
+
+- `src/Fasteners.Domain`
+- `src/Fasteners.Application`
+- `src/Fasteners.Infrastructure`
+- `src/Fasteners.Web`
+- `src/Fasteners.Api`
+- `tests/`
+- `tools/`
+
+### Run the ASP.NET solution
 
 ```bash
 dotnet restore fasteners-commerce.sln
 dotnet build fasteners-commerce.sln
-```
-
-### 2. Apply EF Core migrations & seed data
-
-```bash
-dotnet ef database update --project src/Fasteners.Infrastructure --startup-project src/Fasteners.Web
-```
-
-The `SeedData` service will populate a starter catalog on first run.
-
-### 3. Run the MVC storefront
-
-```bash
 dotnet run --project src/Fasteners.Web
 ```
 
-Navigate to `https://localhost:5001` to browse the storefront, use the search bar, and view sample featured products.
+## Notes
 
-### 4. Run the JSON API
-
-```bash
-dotnet run --project src/Fasteners.Api
-```
-
-Swagger UI is available at `https://localhost:5001/swagger` for the API project. Use the `GET /api/v1/products` endpoint to explore seeded catalog data.
-
-## Docker workflow
-
-The repository includes Dockerfiles and a `docker-compose.yml` for local container-based development.
-
-```bash
-docker compose up --build
-```
-
-This command launches three containers:
-
-* **web** – ASP.NET Core MVC storefront served on port `8080`.
-* **api** – JSON API served on port `8081`.
-* **db** – SQL Server 2022 Express.
-
-## Continuous integration
-
-The GitHub Actions workflow restores dependencies, builds the solution, runs the test suite, and publishes container images. Update the image names under the `Publish Web Image` and `Publish API Image` steps to match your registry.
-
-## Testing
-
-* **Unit tests:** `dotnet test tests/Fasteners.UnitTests/Fasteners.UnitTests.csproj`
-* **Integration tests:** `dotnet test tests/Fasteners.IntegrationTests/Fasteners.IntegrationTests.csproj`
-
-## Configuration
-
-Key configuration is stored in `appsettings.json` for each application project. Override settings using environment variables or user secrets. Sensitive keys (Stripe, JWT, shipping providers) should be managed outside of source control.
-
-## Next steps
-
-This starter includes a minimal data model and UI meant to be expanded. Suggested enhancements include:
-
-* Rich faceted search with HTMX partial updates.
-* Advanced pricing tiers with wholesale/contract logic.
-* Quote management workflow and saved carts.
-* BOM imports, bulk catalog management, and admin dashboard.
-* Production-ready Tailwind build pipeline and Lighthouse performance tuning.
-
-Contributions are welcome via pull requests.
+- Next.js catalog data is currently seeded in `lib/data.ts`.
+- Search ranking and BOM parsing live in `lib/search.ts`.
+- Checkout, quote, and import routes are scaffolded for later provider integrations.
+- Sensitive runtime settings should stay out of source control.

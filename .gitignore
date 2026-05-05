@@ -1,3 +1,9 @@
+.next/
+node_modules/
+dist/
+coverage/
+*.log
+
 bin/
 obj/
 **/bin/
@@ -9,5 +15,4 @@ obj/
 *.db
 *.DS_Store
 wwwroot/lib/
-node_modules/
 appsettings.*.local.json
